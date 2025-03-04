@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const projectRoutes = require("./routes/projectRoute");
+const userRoutes = require("./routes/userRoutes");
 const mongoose = require("mongoose");
 
 const port = process.env.PORT || 8000;
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
 app.use(cors());
 app.use(express.json());
 app.use("/api/projects", projectRoutes);
+app.use("/api/user", userRoutes);
 
 // connect momgo
 mongoose
