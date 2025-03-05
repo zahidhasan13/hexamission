@@ -8,9 +8,18 @@ const Header = () => {
         <div>
           <h1 className="text-2xl font-bold">HexaMission</h1>
         </div>
-        <div>
-          <Link to="/" className="bg-sky-500 px-5 py-2 rounded font-semibold">
+        <div className="flex items-center gap-2">
+          <Link
+            to="/login"
+            className="bg-sky-500 px-5 py-2 rounded font-semibold"
+          >
             Login
+          </Link>
+          <Link
+            to="/signup"
+            className="bg-green-500 px-5 py-2 rounded font-semibold"
+          >
+            Sign Up
           </Link>
         </div>
       </div>
