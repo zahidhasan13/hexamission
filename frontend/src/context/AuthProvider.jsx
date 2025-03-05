@@ -1,7 +1,9 @@
 import React, { createContext, useReducer } from "react";
 
 const initialState = {
-  user: [],
+  user: localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null,
 };
 
 const authReducers = (state, action) => {
@@ -14,7 +16,7 @@ const authReducers = (state, action) => {
     case "LOGOUT":
       return {
         ...state,
-        user: [],
+        user: null,
       };
     default:
       return state;

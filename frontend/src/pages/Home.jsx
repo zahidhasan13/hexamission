@@ -5,7 +5,6 @@ import useProjectContext from "../hooks/useProjectContext";
 
 const Home = () => {
   const { projects, dispatch } = useProjectContext();
-  console.log(projects);
 
   useEffect(() => {
     const getAllProjects = async () => {

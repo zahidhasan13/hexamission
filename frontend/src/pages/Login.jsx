@@ -1,21 +1,30 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
 
 function Login() {
+  const { error, loading, login } = useLogin();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Logging in:", data);
+  const onSubmit = async (data) => {
+    await login(data.email, data.password);
+    reset();
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-slate-800 text-sky-500">
       <div className="w-full max-w-md p-8 space-y-6 bg-slate-900 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-center">Login to HexaMission</h2>
+        {error && (
+          <p className="bg-rose-500/20 rounded-lg p-5 text-rose-500 border border-rose-500">
+            {error}
+          </p>
+        )}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <label className="block text-sm font-medium">Email</label>
@@ -44,6 +53,7 @@ function Login() {
             )}
           </div>
           <button
+            disabled={loading}
             type="submit"
             className="w-full py-2 bg-sky-500 text-white rounded-md hover:bg-sky-600 transition"
           >
